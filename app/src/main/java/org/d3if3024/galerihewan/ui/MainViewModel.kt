@@ -1,17 +1,18 @@
-package org.d3if3024.galerihewan
+package org.d3if3024.galerihewan.ui
 
-import androidx.appcompat.app.AppCompatActivity
-import android.os.Bundle
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
 import org.d3if3024.galerihewan.model.Hewan
+import org.d3if3024.galerihewan.R
 
-
-class MainActivity : AppCompatActivity() {
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+class MainViewModel : ViewModel(){
+    private val data = MutableLiveData<List<Hewan>>()
+    init {
+        data.value = initData()
     }
-
-    private fun getData() : List<Hewan> {
+    // Data ini akan kita ambil dari server di langkah selanjutnya
+    private fun initData(): List<Hewan> {
         return listOf(
             Hewan(
                 "Angsa",
@@ -49,7 +50,7 @@ class MainActivity : AppCompatActivity() {
                 R.drawable.kelinci
             ),
             Hewan(
-                "kerbau",
+                "Kerbau",
                 "Bubalus bubalis",
                 R.drawable.kerbau
             ),
@@ -63,7 +64,8 @@ class MainActivity : AppCompatActivity() {
                 "Bos taurus",
                 R.drawable.sapi
             )
-
-                )
+        )
     }
+    fun getData(): LiveData<List<Hewan>> = data
+
 }

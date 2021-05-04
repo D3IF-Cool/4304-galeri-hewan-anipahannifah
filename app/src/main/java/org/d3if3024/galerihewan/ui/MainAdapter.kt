@@ -3,10 +3,17 @@ package org.d3if3024.galerihewan.ui
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import org.d3if3024.galerihewan.Hewan
 import org.d3if3024.galerihewan.databinding.ListItemBinding
+import org.d3if3024.galerihewan.model.Hewan
 
-class MainAdapter(private val data: List<Hewan>) : RecyclerView.Adapter<MainAdapter.ViewHolder>() {
+class MainAdapter: RecyclerView.Adapter<MainAdapter.ViewHolder>() {
+    private val data = mutableListOf<Hewan>()
+    fun updateData(newData: List<Hewan>) {
+        data.clear()
+        data.addAll(newData)
+        notifyDataSetChanged()
+    }
+
     class ViewHolder(private val binding: ListItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
@@ -33,4 +40,7 @@ class MainAdapter(private val data: List<Hewan>) : RecyclerView.Adapter<MainAdap
     }
 
 }
+
+
+
 
